@@ -1,0 +1,91 @@
+---
+interface Props {
+  title?: string;
+  subtitle?: string;
+  images?: Array<{ src: string | { src: string; width: number; height: number; format: string }; alt: string }>;
+  id?: string;
+}
+
+const { title = 'Capacitación con Inteligencia Artificial', subtitle = '', images = [], id = 'ia' } = Astro.props;
+
+// Helper para obtener URL de imagen
+function getImageUrl(src: string | { src: string; width: number; height: number; format: string }): string {
+  if (typeof src === 'string') {
+    return src;
+  }
+  return src.src || '';
+}
+---
+
+<section id={id} class="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
+  <!-- Fondo con imagen de puntos translúcida -->
+  <div class="absolute inset-0 pointer-events-none overflow-hidden">
+    <div 
+      class="absolute w-full h-full bg-cover bg-center bg-no-repeat" 
+      style="background-image: url('/ia-background-dots.jpg'); opacity: 0.15;"
+    ></div>
+  </div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <!-- Contenido izquierdo -->
+      <div class="space-y-6">
+        <div>
+          <h2 class="text-4xl md:text-5xl font-bold text-[#003366] dark:text-white mb-4">{title}</h2>
+          {subtitle && <p class="text-lg text-gray-600 dark:text-gray-300">{subtitle}</p>}
+        </div>
+
+        <div class="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed">
+          <p>
+            En los últimos años, la inteligencia artificial ha adquirido una relevancia estratégica sin precedentes. 
+            Este avance forma parte de la llamada Cuarta Revolución Industrial —y tecnológica por su propia naturaleza—, 
+            lo que ha llevado a muchas empresas a capacitar a su personal para adaptarse a nuevos modelos de trabajo, 
+            toma de decisiones y uso de herramientas digitales. No quedarse atrás ya no es una opción.
+          </p>
+
+          <p>
+            Ponemos a tu disposición cursos de inteligencia artificial en modalidad presencial y a distancia, 
+            diseñados para responder a las necesidades reales de las organizaciones. Contamos con instructores 
+            certificados como Agentes Capacitadores ante la STPS, con facultad para emitir constancias DC-3, 
+            y con certificaciones vigentes en los estándares de competencia CONOCER EC0217.01 y EC0301.
+          </p>
+
+          <p>
+            Todos nuestros programas pueden personalizarse por área, puesto o sector, integrando la inteligencia 
+            artificial de manera práctica y aplicable. Solicita información; adaptamos cada capacitación a los 
+            requerimientos específicos de tu empresa.
+          </p>
+        </div>
+      </div>
+
+      <!-- Imágenes derecho con fondo azul -->
+      <div class="relative">
+        <div class="absolute inset-0 bg-gradient-to-br from-[#003366] to-[#0052A3] rounded-3xl transform -rotate-3 opacity-90"></div>
+        <div class="relative z-10 grid grid-cols-2 gap-4 p-8">
+          {images.length > 0 ? (
+            images.map((img) => (
+              <div class="aspect-square overflow-hidden rounded-xl shadow-lg">
+                <img src={getImageUrl(img.src)} alt={img.alt} class="w-full h-full object-cover" />
+              </div>
+            ))
+          ) : (
+            <>
+              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
+                <span class="text-gray-600">Imagen 1</span>
+              </div>
+              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
+                <span class="text-gray-600">Imagen 2</span>
+              </div>
+              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
+                <span class="text-gray-600">Imagen 3</span>
+              </div>
+              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
+                <span class="text-gray-600">Imagen 4</span>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

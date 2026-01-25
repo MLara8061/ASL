@@ -1,0 +1,185 @@
+---
+// Página de referencia de diseño del cliente
+---
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referencia de Diseño - ASL</title>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f5f5;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            color: #003366;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+        }
+        
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .design-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .design-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .design-card img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .design-card h3 {
+            padding: 20px;
+            margin: 0;
+            color: #003366;
+            font-size: 18px;
+        }
+        
+        .analysis {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-top: 40px;
+        }
+        
+        .analysis h2 {
+            color: #003366;
+            border-bottom: 3px solid #EF4444;
+            padding-bottom: 10px;
+        }
+        
+        .analysis ul {
+            line-height: 1.8;
+            color: #333;
+        }
+        
+        .analysis li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: #fff3cd;
+            padding: 15px;
+            border-left: 4px solid #EF4444;
+            margin: 20px 0;
+            border-radius: 4px;
+        }
+        
+        .next-steps {
+            background: #e3f2fd;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 30px;
+            border-left: 4px solid #003366;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 Análisis de Diseño del Cliente</h1>
+    <p class="subtitle">Propuesta visual de ASL - Acercando Soluciones Laborales</p>
+    
+    <div class="gallery">
+        <div class="design-card">
+            <img src="/design-reference/Home.png" alt="Home - Página principal">
+            <h3>🏠 Home</h3>
+        </div>
+        
+        <div class="design-card">
+            <img src="/design-reference/Servicios.png" alt="Servicios">
+            <h3>💼 Servicios</h3>
+        </div>
+        
+        <div class="design-card">
+            <img src="/design-reference/Capacitaciones.png" alt="Capacitaciones">
+            <h3>📚 Capacitaciones</h3>
+        </div>
+        
+        <div class="design-card">
+            <img src="/design-reference/Cursos disponibles.png" alt="Cursos Disponibles">
+            <h3>📖 Cursos</h3>
+        </div>
+        
+        <div class="design-card">
+            <img src="/design-reference/Footer.png" alt="Footer">
+            <h3>🔗 Footer</h3>
+        </div>
+    </div>
+    
+    <div class="analysis">
+        <h2>📊 Análisis de la Propuesta del Cliente</h2>
+        
+        <div class="highlight">
+            <strong>Instrucciones:</strong> Analiza cada imagen para identificar:
+            <ul>
+                <li>Estructura y layout de las secciones</li>
+                <li>Paleta de colores utilizada</li>
+                <li>Tipografía y estilos de texto</li>
+                <li>Componentes visuales principales</li>
+                <li>Espaciado y alineación</li>
+                <li>Elementos interactivos (botones, formularios)</li>
+            </ul>
+        </div>
+        
+        <h3>🔍 Elementos a Personalizar</h3>
+        <ul>
+            <li><strong>Hero Section:</strong> Banner principal con imagen de fondo y CTA</li>
+            <li><strong>Servicios:</strong> Grid de tarjetas con iconos y descripciones</li>
+            <li><strong>Capacitaciones:</strong> Listado de programas disponibles</li>
+            <li><strong>Cursos:</strong> Catálogo interactivo de cursos</li>
+            <li><strong>Footer:</strong> Enlaces, contacto y redes sociales</li>
+            <li><strong>Colores:</strong> Identificar paleta corporativa exacta</li>
+            <li><strong>Tipografía:</strong> Fuentes específicas para headings y body</li>
+        </ul>
+        
+        <h3>🎯 Próximas Acciones</h3>
+        <ul>
+            <li>✅ Analizar cada sección de la propuesta visual</li>
+            <li>⏳ Extraer colores exactos de las imágenes de referencia</li>
+            <li>⏳ Adaptar el layout actual a la propuesta del cliente</li>
+            <li>⏳ Ajustar componentes (tamaños, espacios, estilos)</li>
+            <li>⏳ Implementar nuevos elementos si es necesario</li>
+            <li>⏳ Testing en dispositivos móviles y desktop</li>
+        </ul>
+    </div>
+    
+    <div class="next-steps">
+        <h3>✨ Iniciando Personalización</h3>
+        <p>Por favor, describe los cambios principales que observas en las imágenes del cliente:</p>
+        <ul>
+            <li>¿Cuáles son los colores principales en la propuesta?</li>
+            <li>¿Cómo es la estructura del Hero (imagen, texto, botones)?</li>
+            <li>¿Qué cambios hay en servicios, capacitaciones y cursos?</li>
+            <li>¿Hay elementos visuales nuevos que no están en la plantilla actual?</li>
+            <li>¿Cuáles son las prioridades de cambio?</li>
+        </ul>
+    </div>
+</body>
+</html>

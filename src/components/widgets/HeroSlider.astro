@@ -1,0 +1,261 @@
+---
+interface Slide {
+  title: string;
+  subtitle: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+  actions?: Array<{
+    text: string;
+    href: string;
+    icon?: string;
+    variant?: 'primary' | 'secondary';
+  }>;
+}
+
+interface Props {
+  slides: Slide[];
+  autoplay?: boolean;
+  autoplayDelay?: number;
+  id?: string;
+}
+
+const {
+  slides,
+  autoplay = true,
+  autoplayDelay = 5000,
+  id = 'hero-slider',
+} = Astro.props;
+---
+
+<div id={id} class="relative w-full min-h-[85vh] sm:min-h-[90vh] lg:h-screen overflow-hidden bg-gray-900">
+  {slides.map((slide, index) => (
+    <div
+      class={`hero-slide absolute inset-0 transition-opacity duration-1000 ${
+        index === 0 ? 'opacity-100' : 'opacity-0'
+      }`}
+      data-slide={index}
+    >
+      <!-- Background Image -->
+      <img 
+        src={slide.image.src}
+        alt={slide.image.alt}
+        class="absolute inset-0 w-full h-full object-cover"
+        loading="eager"
+      />
+      <!-- Overlay oscuro -->
+      <div class="absolute inset-0 bg-black/50"></div>
+
+      <!-- Content -->
+      <div class="relative h-full flex items-center justify-center px-4 z-10">
+          <div class="text-center text-white w-full max-w-5xl mx-auto">
+            <h1
+              class="mb-4 sm:mb-5 md:mb-6 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold leading-snug sm:leading-tight px-2"
+              style="text-shadow: 2px 2px 8px rgba(0,0,0,0.7);"
+              set:html={slide.title}
+            />
+            <p
+              class="mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-white leading-relaxed max-w-3xl mx-auto px-2 animate-fade-in-up animation-delay-200"
+              style="text-shadow: 1px 1px 6px rgba(0,0,0,0.7);"
+              set:html={slide.subtitle}
+            />
+
+            <!-- CTA Buttons -->
+            {slide.actions && slide.actions.length > 0 && (
+              <div class="flex flex-col sm:flex-row gap-3 justify-center items-center animate-fade-in-up animation-delay-400">
+                {slide.actions.map((action) => (
+                  <a
+                    href={action.href}
+                    class={`px-4 py-2 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 text-sm sm:text-base inline-block ${
+                      action.variant === 'primary'
+                        ? 'bg-[#EF4444] text-white hover:bg-red-700 shadow-lg'
+                        : 'bg-white/20 text-white border-2 border-white hover:bg-white/30 backdrop-blur'
+                    }`}
+                  >
+                    {action.text}
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+    </div>
+  ))}
+
+  <!-- Navigation Buttons -->
+  <button
+    id="slider-prev"
+    class="absolute left-4 sm:left-8 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 group"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+    </svg>
+  </button>
+
+  <button
+    id="slider-next"
+    class="absolute right-4 sm:right-8 top-1/2 -translate-y-1/2 z-20 bg-white/30 hover:bg-white/50 backdrop-blur text-white p-3 rounded-full transition-all duration-300 transform hover:scale-110 group"
+  >
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+    </svg>
+  </button>
+
+  <!-- Dots Navigation -->
+  <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex gap-3 items-center">
+    {slides.map((_, index) => (
+      <button
+        id={`dot-${index}`}
+        class={`dot-nav w-3 h-3 rounded-full transition-all duration-300 cursor-pointer ${
+          index === 0
+            ? 'bg-white w-8'
+            : 'bg-white/50 hover:bg-white/75'
+        }`}
+        data-slide={index}
+        aria-label={`Go to slide ${index + 1}`}
+      />
+    ))}
+  </div>
+
+</div>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.8s ease-out forwards;
+  }
+
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
+  .hero-slide {
+    will-change: opacity;
+  }
+</style>
+
+<script define:vars={{ autoplay, autoplayDelay }}>
+  class HeroSlider {
+    constructor(containerId) {
+      this.container = document.getElementById(containerId);
+      this.slides = this.container.querySelectorAll('.hero-slide');
+      this.dotsNav = this.container.querySelectorAll('.dot-nav');
+      this.prevBtn = this.container.querySelector('#slider-prev');
+      this.nextBtn = this.container.querySelector('#slider-next');
+      this.currentSlide = 0;
+      this.autoplayInterval = null;
+
+      this.init();
+    }
+
+    init() {
+      // Event listeners
+      this.prevBtn.addEventListener('click', () => this.prevSlide());
+      this.nextBtn.addEventListener('click', () => this.nextSlide());
+
+      this.dotsNav.forEach((dot) => {
+        dot.addEventListener('click', (e) => {
+          this.goToSlide(parseInt(e.target.dataset.slide));
+        });
+      });
+
+      // Autoplay
+      if (autoplay) {
+        this.startAutoplay();
+        this.container.addEventListener('mouseenter', () => this.stopAutoplay());
+        this.container.addEventListener('mouseleave', () => this.startAutoplay());
+      }
+
+      // Keyboard navigation
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') this.prevSlide();
+        if (e.key === 'ArrowRight') this.nextSlide();
+      });
+    }
+
+    showSlide(index) {
+      // Wrap around
+      if (index >= this.slides.length) {
+        this.currentSlide = 0;
+      } else if (index < 0) {
+        this.currentSlide = this.slides.length - 1;
+      } else {
+        this.currentSlide = index;
+      }
+
+      // Update slides
+      this.slides.forEach((slide, i) => {
+        slide.classList.toggle('opacity-100', i === this.currentSlide);
+        slide.classList.toggle('opacity-0', i !== this.currentSlide);
+      });
+
+      // Update dots
+      this.dotsNav.forEach((dot, i) => {
+        if (i === this.currentSlide) {
+          dot.classList.add('bg-white', 'w-8');
+          dot.classList.remove('bg-white/50', 'hover:bg-white/75');
+        } else {
+          dot.classList.remove('bg-white', 'w-8');
+          dot.classList.add('bg-white/50', 'hover:bg-white/75');
+        }
+      });
+    }
+
+    nextSlide() {
+      this.showSlide(this.currentSlide + 1);
+      this.resetAutoplay();
+    }
+
+    prevSlide() {
+      this.showSlide(this.currentSlide - 1);
+      this.resetAutoplay();
+    }
+
+    goToSlide(index) {
+      this.showSlide(index);
+      this.resetAutoplay();
+    }
+
+    startAutoplay() {
+      if (this.autoplayInterval) return;
+      this.autoplayInterval = setInterval(() => {
+        this.currentSlide = (this.currentSlide + 1) % this.slides.length;
+        this.showSlide(this.currentSlide);
+      }, autoplayDelay);
+    }
+
+    stopAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+        this.autoplayInterval = null;
+      }
+    }
+
+    resetAutoplay() {
+      this.stopAutoplay();
+      if (autoplay) {
+        this.startAutoplay();
+      }
+    }
+  }
+
+  // Initialize slider
+  document.addEventListener('DOMContentLoaded', () => {
+    new HeroSlider('hero-slider');
+  });
+</script>

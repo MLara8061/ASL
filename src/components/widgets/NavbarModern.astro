@@ -1,0 +1,172 @@
+---
+import { Icon } from 'astro-icon/components';
+import ToggleTheme from '~/components/common/ToggleTheme.astro';
+import Button from '~/components/ui/Button.astro';
+import { getHomePermalink } from '~/utils/permalinks';
+import type { CallToAction } from '~/types';
+
+interface Link {
+  text?: string;
+  href?: string;
+  ariaLabel?: string;
+  icon?: string;
+}
+
+interface MenuLink extends Link {
+  links?: Array<MenuLink>;
+}
+
+export interface Props {
+  id?: string;
+  links?: Array<MenuLink>;
+  actions?: Array<CallToAction>;
+  isSticky?: boolean;
+  showToggleTheme?: boolean;
+}
+
+const {
+  id = 'header',
+  links = [],
+  actions = [],
+  isSticky = false,
+  showToggleTheme = false,
+} = Astro.props;
+---
+
+<header
+  id={id}
+  class:list={[
+    'w-full z-50 transition-all duration-300 bg-white shadow-sm',
+    { 'fixed top-0': isSticky },
+  ]}
+>
+  <nav class="navbar-container">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <!-- Logo -->
+        <div class="flex-shrink-0">
+          <a href={getHomePermalink()} class="flex items-center navbar-logo">
+            <img
+              src="/logo-asl.png"
+              alt="ASL Logo"
+              class="h-10 w-auto"
+            />
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex md:items-center md:space-x-8">
+          {links.map((link) => (
+            <a
+              href={link.href}
+              class="navbar-link text-gray-700 hover:text-primary font-medium text-sm transition-colors"
+            >
+              {link.text}
+            </a>
+          ))}
+        </div>
+
+        <!-- Actions -->
+        <div class="flex items-center space-x-4">
+          {showToggleTheme && (
+            <div class="hidden md:block">
+              <ToggleTheme />
+            </div>
+          )}
+          
+          {actions.map((action) => (
+            <Button
+              variant={action.variant || 'primary'}
+              href={action.href}
+              class="hidden md:inline-flex"
+            >
+              {action.text}
+            </Button>
+          ))}
+
+          <!-- Mobile menu button -->
+          <button
+            type="button"
+            class="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-primary focus:outline-none"
+            aria-label="Abrir menú"
+            id="mobile-menu-button"
+          >
+            <Icon name="tabler:menu-2" class="w-6 h-6" />
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile menu -->
+    <div id="mobile-menu" class="hidden md:hidden">
+      <div class="px-4 pt-2 pb-3 space-y-1 bg-white border-t border-gray-100">
+        {links.map((link) => (
+          <a
+            href={link.href}
+            class="navbar-link block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-primary hover:bg-gray-50"
+          >
+            {link.text}
+          </a>
+        ))}
+        {actions.map((action) => (
+          <a
+            href={action.href}
+            class="block px-3 py-2 rounded-md text-base font-medium text-white bg-primary hover:bg-secondary text-center"
+          >
+            {action.text}
+          </a>
+        ))}
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  document.addEventListener('DOMContentLoaded', () => {
+    const button = document.getElementById('mobile-menu-button');
+    const menu = document.getElementById('mobile-menu');
+    
+    button?.addEventListener('click', () => {
+      menu?.classList.toggle('hidden');
+    });
+  });
+
+  // Sticky header effect
+  const header = document.querySelector('header');
+
+  window.addEventListener('scroll', () => {
+    const currentScroll = window.pageYOffset;
+    
+    if (currentScroll > 50) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+</script>
+
+<style>
+  .navbar-container {
+    transition: all 0.3s ease;
+  }
+
+  header.scrolled .navbar-container {
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  }
+
+  .navbar-logo,
+  .navbar-link {
+    text-decoration: none !important;
+    border: none !important;
+    outline: none !important;
+  }
+
+  .navbar-logo::before,
+  .navbar-logo::after,
+  .navbar-link::before,
+  .navbar-link::after {
+    display: none !important;
+    content: none !important;
+  }
+</style>

@@ -1,0 +1,82 @@
+---
+interface Service {
+  title: string;
+  description: string;
+  image: {
+    src: string | { src: string; width: number; height: number; format: string };
+    alt: string;
+  };
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  tagline?: string;
+  services?: Service[];
+  id?: string;
+}
+
+const {
+  title = 'Nuestros Servicios',
+  subtitle = 'Soluciones especializadas diseñadas para tu empresa',
+  tagline = 'Servicios Principales',
+  services = [],
+  id = 'servicios',
+} = Astro.props;
+
+// Helper para obtener URL de imagen
+function getImageUrl(src: string | { src: string; width: number; height: number; format: string }): string {
+  if (typeof src === 'string') {
+    return src;
+  }
+  return src.src || '';
+}
+---
+
+<section id={id} class="relative py-16 sm:py-20 lg:py-28">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-12 lg:mb-16">
+      {tagline && <p class="text-sm font-semibold text-[#EF4444] uppercase tracking-widest">{tagline}</p>}
+      {title && <h2 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mt-3 mb-4">{title}</h2>}
+      {subtitle && <p class="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">{subtitle}</p>}
+    </div>
+
+    <!-- Services Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {services.map((service) => (
+        <div class="group bg-white dark:bg-slate-900 rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 dark:border-slate-800 hover:border-[#EF4444] dark:hover:border-[#EF4444]">
+          <!-- Image Container -->
+          <div class="h-56 overflow-hidden bg-gray-200 dark:bg-slate-800 relative">
+            <img
+              src={getImageUrl(service.image.src)}
+              alt={service.image.alt}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </div>
+
+          <!-- Content -->
+          <div class="p-8">
+            <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-3 group-hover:text-[#EF4444] transition-colors">
+              {service.title}
+            </h3>
+            <p class="text-gray-600 dark:text-gray-400 text-sm leading-relaxed">
+              {service.description}
+            </p>
+
+            <!-- Accent line -->
+            <div class="mt-6 h-1 w-12 bg-[#EF4444] group-hover:w-full transition-all duration-300"></div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  /* Smooth transitions */
+  :global(.group) {
+    transition: all 0.3s ease;
+  }
+</style>
