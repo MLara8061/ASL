@@ -61,7 +61,10 @@ export const footerData = {
     },
   ],
   secondaryLinks: [],
-  socialLinks: [],
+  socialLinks: [
+    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: 'https://www.facebook.com/AcercandoCapacitacion?locale=es_LA' },
+    { ariaLabel: 'Instagram', icon: 'tabler:brand-instagram', href: 'https://www.instagram.com/acercandomx?igsh=YWdvZHp3YXJ0aG5p&utm_source=qr' },
+  ],
   footNote: `
     © 2026 Acercando Soluciones Laborales. Todos los derechos reservados.
   `,

@@ -35,7 +35,7 @@ Para que la sección Hero se vea exactamente como en el diseño proporcionado, n
 - Botón "CONTÁCTANOS AHORA"
 
 ✅ **Colores exactos:**
-- Azul corporativo: `#0066CC`
+- Azul corporativo: `#013479`
 - Rojo de acento: `#EF4444`
 - Fondo blanco
 

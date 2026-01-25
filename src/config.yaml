@@ -9,9 +9,9 @@ site:
 # Default SEO metadata
 metadata:
   title:
-    default: 'ASL - Consultora de RRHH & Tecnología'
+    default: 'LA SOLUCIÓN QUE TU EMPRESA NECESITA'
     template: '%s — ASL'
-  description: "Acercando Soluciones Laborales: Consultora especializada en Recursos Humanos, Capacitación y Soluciones basadas en Inteligencia Artificial para empresas y hoteles."
+  description: "Empresa consultora en recursos humanos"
   robots:
     index: true
     follow: true
