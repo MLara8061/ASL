@@ -39,45 +39,30 @@ export const footerData = {
     {
       title: 'Servicios',
       links: [
-        { text: 'Consultoría Integral', href: '#' },
-        { text: 'Capacitación & IA', href: '#' },
-        { text: 'Asesoría Legal Laboral', href: '#' },
+        { text: 'Consultoría Integral', href: '#servicios' },
+        { text: 'Capacitación & IA', href: '#ia' },
+        { text: 'Asesoría Legal Laboral', href: '#servicios' },
       ],
     },
     {
       title: 'Recursos',
       links: [
-        { text: 'Cursos', href: '#' },
-        { text: 'Blog', href: '#' },
-        { text: 'Webinars', href: '#' },
+        { text: 'Cursos Disponibles', href: '#cursos' },
+        { text: 'Capacitación IA', href: '#ia' },
       ],
     },
     {
-      title: 'Compañía',
+      title: 'Contacto',
       links: [
-        { text: 'Sobre Nosotros', href: '#' },
-        { text: 'Equipo', href: '#' },
-        { text: 'Contacto', href: '#' },
-      ],
-    },
-    {
-      title: 'Legal',
-      links: [
-        { text: 'Términos y Condiciones', href: getPermalink('/terms') },
-        { text: 'Política de Privacidad', href: getPermalink('/privacy') },
+        { text: 'Contáctanos', href: '#testimonial' },
+        { text: 'Teléfono: 998 223 4097', href: 'tel:+529982234097' },
+        { text: 'Email: info@acercandosoluciones.com', href: 'mailto:info@acercandosoluciones.com' },
       ],
     },
   ],
-  secondaryLinks: [
-    { text: 'Términos', href: getPermalink('/terms') },
-    { text: 'Política de Privacidad', href: getPermalink('/privacy') },
-  ],
-  socialLinks: [
-    { ariaLabel: 'WhatsApp', icon: 'tabler:brand-whatsapp', href: 'https://wa.me/1234567890' },
-    { ariaLabel: 'Facebook', icon: 'tabler:brand-facebook', href: '#' },
-    { ariaLabel: 'LinkedIn', icon: 'tabler:brand-linkedin', href: '#' },
-  ],
+  secondaryLinks: [],
+  socialLinks: [],
   footNote: `
-    © 2026 Acercando Soluciones Laborales (ASL). Todos los derechos reservados.
+    © 2026 Acercando Soluciones Laborales. Todos los derechos reservados.
   `,
 };

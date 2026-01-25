@@ -1,0 +1,84 @@
+---
+// Hero Section - Diseño exacto del cliente
+---
+
+<section class="relative overflow-hidden bg-white">
+  <div class="container mx-auto px-4 sm:px-6 py-12 sm:py-16 lg:py-24">
+    <div class="grid lg:grid-cols-2 gap-8 sm:gap-12 items-center">
+      <!-- Contenido Izquierdo -->
+      <div class="space-y-4 sm:space-y-6 lg:space-y-8">
+        <!-- Logo y Tagline en la misma línea -->
+        <div class="flex items-center gap-3 sm:gap-4">
+          <div class="w-16 h-16 sm:w-20 sm:h-20 lg:w-28 lg:h-28 flex-shrink-0">
+            <img src="/logo-asl.png" alt="Acercando Destinos Soluciones Laborales" class="w-full h-full object-contain" />
+          </div>
+          <p class="text-[#0066CC] font-medium text-sm sm:text-base lg:text-lg uppercase tracking-wide leading-tight">
+            LA SOLUCIÓN QUE TU EMPRESA NECESITA
+          </p>
+        </div>
+
+        <!-- Título Principal -->
+        <h1 class="text-[#0066CC] font-bold text-2xl sm:text-3xl lg:text-4xl xl:text-5xl leading-tight">
+          Empresa<br />consultora en<br />recursos humanos
+        </h1>
+
+        <!-- Descripción -->
+        <div class="space-y-3 sm:space-y-4 text-[#0066CC] text-sm sm:text-base lg:text-lg leading-relaxed">
+          <p>
+            Acompañamos a tu empresa a través de la consultoría en manejo de personal, asesoría legal en materia
+            laboral y capacitación de alto nivel con enfoque a las nuevas teconologías (IA y experiencias digitales).
+          </p>
+
+          <p>
+            Nuestro trabajo se centra en ayudar a las empresas a optimizar sus procesos de gestión humana, cumplir con
+            la normatividad aplicable y desarrollar equipos de trabajo más sólidos, productivos y alineados con sus
+            objetivos organizacionales.
+          </p>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="pt-2 sm:pt-4">
+          <a
+            href="#contacto"
+            class="inline-block bg-[#0066CC] text-white font-bold text-base sm:text-lg px-8 sm:px-10 py-3 sm:py-4 rounded-full hover:bg-[#0052A3] transition-all duration-300 shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            CONTÁCTANOS AHORA
+          </a>
+        </div>
+      </div>
+
+      <!-- Contenido Derecho - Imagen -->
+      <div class="relative min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] flex items-center justify-center mt-8 lg:mt-0">
+        <!-- Formas decorativas detrás de la imagen - Estilo cliente -->
+        <!-- Forma roja arriba izquierda -->
+        <div class="absolute -top-6 -left-6 sm:-top-10 sm:-left-10 w-[200px] h-[240px] sm:w-[280px] sm:h-[320px] lg:w-[350px] lg:h-[400px] bg-[#EF4444] rounded-[40px_80px_60px_70px] sm:rounded-[60px_120px_80px_100px] transform -rotate-12"></div>
+        
+        <!-- Forma azul abajo derecha -->
+        <div class="absolute -bottom-8 -right-8 sm:-bottom-12 sm:-right-12 w-[240px] h-[280px] sm:w-[320px] sm:h-[380px] lg:w-[400px] lg:h-[480px] bg-[#0066CC] rounded-[70px_60px_80px_60px] sm:rounded-[100px_80px_120px_90px] transform rotate-6"></div>
+
+        <!-- Imagen principal -->
+        <div class="relative z-10 w-[90%] sm:max-w-[85%] lg:max-w-[80%]">
+          <div class="rounded-[30px] sm:rounded-[40px] overflow-hidden shadow-2xl">
+            <img
+              src="/Heroe.webp"
+              alt="Equipo colaborativo"
+              class="w-full h-auto object-cover"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Formas de fondo adicionales -->
+  <div class="absolute top-0 right-0 w-1/3 h-full bg-gradient-to-l from-blue-50 to-transparent opacity-30 -z-20">
+  </div>
+</section>
+
+<style>
+  /* Asegurar que los colores sean exactos */
+  section {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+</style>

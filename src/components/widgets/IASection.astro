@@ -17,75 +17,73 @@ function getImageUrl(src: string | { src: string; width: number; height: number;
 }
 ---
 
-<section id={id} class="relative py-16 sm:py-20 lg:py-28 overflow-hidden">
-  <!-- Fondo con imagen de puntos translúcida -->
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div 
-      class="absolute w-full h-full bg-cover bg-center bg-no-repeat" 
-      style="background-image: url('/ia-background-dots.jpg'); opacity: 0.15;"
-    ></div>
-  </div>
-
-  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+<section id={id} class="relative py-12 sm:py-16 lg:py-28 bg-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 items-start">
       <!-- Contenido izquierdo -->
-      <div class="space-y-6">
-        <div>
-          <h2 class="text-4xl md:text-5xl font-bold text-[#003366] dark:text-white mb-4">{title}</h2>
-          {subtitle && <p class="text-lg text-gray-600 dark:text-gray-300">{subtitle}</p>}
+      <div class="space-y-4 sm:space-y-6">
+        <!-- Título y Logo -->
+        <div class="flex items-start gap-3 sm:gap-6 mb-6 sm:mb-8">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-bold text-[#0066CC] leading-tight flex-1">
+            Capacitación con<br />Inteligencia Artificial
+          </h2>
+          <div class="w-20 h-20 sm:w-24 sm:h-24 lg:w-32 lg:h-32 flex-shrink-0">
+            <img src="/logo-capacitacion.png" alt="Acercando Capacitación" class="w-full h-full object-contain" />
+          </div>
         </div>
 
-        <div class="space-y-5 text-gray-700 dark:text-gray-300 leading-relaxed">
+        <!-- Textos -->
+        <div class="space-y-3 sm:space-y-5 text-[#0066CC] text-sm sm:text-base lg:text-lg leading-relaxed text-justify">
           <p>
-            En los últimos años, la inteligencia artificial ha adquirido una relevancia estratégica sin precedentes. 
-            Este avance forma parte de la llamada Cuarta Revolución Industrial —y tecnológica por su propia naturaleza—, 
-            lo que ha llevado a muchas empresas a capacitar a su personal para adaptarse a nuevos modelos de trabajo, 
-            toma de decisiones y uso de herramientas digitales. No quedarse atrás ya no es una opción.
+            En los últimos años, la inteligencia artificial ha adquirido una relevancia estratégica sin precedentes. Este avance forma parte de la llamada Cuarta Revolución Industrial —y tecnológica por su propia naturaleza—, lo que ha llevado a muchas empresas a capacitar a su personal para adaptarse a nuevos modelos de trabajo, toma de decisiones y uso de herramientas digitales. No quedarse atrás ya no es una opción.
           </p>
 
           <p>
-            Ponemos a tu disposición cursos de inteligencia artificial en modalidad presencial y a distancia, 
-            diseñados para responder a las necesidades reales de las organizaciones. Contamos con instructores 
-            certificados como Agentes Capacitadores ante la STPS, con facultad para emitir constancias DC-3, 
-            y con certificaciones vigentes en los estándares de competencia CONOCER EC0217.01 y EC0301.
+            Ponemos a tu disposición cursos de inteligencia artificial en modalidad presencial y a distancia, diseñados para responder a las necesidades reales de las organizaciones. Contamos con instructores certificados como Agentes Capacitadores ante la STPS, con facultad para emitir constancias DC-3, y con certificaciones vigentes en los estándares de competencia CONOCER EC0217.01 y EC0301.
           </p>
 
           <p>
-            Todos nuestros programas pueden personalizarse por área, puesto o sector, integrando la inteligencia 
-            artificial de manera práctica y aplicable. Solicita información; adaptamos cada capacitación a los 
-            requerimientos específicos de tu empresa.
+            Todos nuestros programas pueden personalizarse por área, puesto o sector, integrando la inteligencia artificial de manera práctica y aplicable. Solicita información; adaptamos cada capacitación a los requerimientos específicos de tu empresa.
           </p>
         </div>
       </div>
 
-      <!-- Imágenes derecho con fondo azul -->
-      <div class="relative">
-        <div class="absolute inset-0 bg-gradient-to-br from-[#003366] to-[#0052A3] rounded-3xl transform -rotate-3 opacity-90"></div>
-        <div class="relative z-10 grid grid-cols-2 gap-4 p-8">
-          {images.length > 0 ? (
-            images.map((img) => (
-              <div class="aspect-square overflow-hidden rounded-xl shadow-lg">
-                <img src={getImageUrl(img.src)} alt={img.alt} class="w-full h-full object-cover" />
-              </div>
-            ))
-          ) : (
-            <>
-              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
-                <span class="text-gray-600">Imagen 1</span>
-              </div>
-              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
-                <span class="text-gray-600">Imagen 2</span>
-              </div>
-              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
-                <span class="text-gray-600">Imagen 3</span>
-              </div>
-              <div class="aspect-square bg-gray-300 rounded-xl flex items-center justify-center">
-                <span class="text-gray-600">Imagen 4</span>
-              </div>
-            </>
-          )}
+      <!-- Imágenes derecho con fondo azul - Grid de 5 imágenes -->
+      <div class="relative mt-8 lg:mt-0">
+        <div class="absolute inset-0 bg-[#0066CC] rounded-[30px] sm:rounded-[50px] transform rotate-3"></div>
+        <div class="relative z-10 p-4 sm:p-8 lg:p-10">
+          <!-- Primera fila: 2 imágenes -->
+          <div class="grid grid-cols-2 gap-2 sm:gap-4 mb-2 sm:mb-4">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl shadow-lg">
+              <img src="/hero-003.jpeg" alt="Capacitación IA 1" class="w-full h-full object-cover" />
+            </div>
+            <div class="aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl shadow-lg">
+              <img src="/hero-004.jpeg" alt="Capacitación IA 2" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <!-- Segunda fila: 1 imagen grande -->
+          <div class="grid grid-cols-1 gap-2 sm:gap-4 mb-2 sm:mb-4">
+            <div class="aspect-[16/9] overflow-hidden rounded-xl sm:rounded-2xl shadow-lg">
+              <img src="/hero-005.jpeg" alt="Capacitación IA 3" class="w-full h-full object-cover" />
+            </div>
+          </div>
+          <!-- Tercera fila: 2 imágenes -->
+          <div class="grid grid-cols-2 gap-2 sm:gap-4">
+            <div class="aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl shadow-lg">
+              <img src="/capacitacion.jpg" alt="Capacitación IA 4" class="w-full h-full object-cover" />
+            </div>
+            <div class="aspect-[4/3] overflow-hidden rounded-xl sm:rounded-2xl shadow-lg">
+              <img src="/007.jpeg" alt="Capacitación IA 5" class="w-full h-full object-cover" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<style>
+  section {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  }
+</style>
