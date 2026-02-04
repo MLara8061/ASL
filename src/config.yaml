@@ -1,6 +1,6 @@
 site:
   name: Acercando Soluciones Laborales (ASL)
-  site: 'https://asl.com.mx'
+  site: 'https://acercandosoluciones.com'
   base: '/'
   trailingSlash: false
 

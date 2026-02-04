@@ -12,6 +12,11 @@ echo '📦 Instalando dependencias...'
 npm install
 echo '🔨 Compilando proyecto...'
 npm run build
+echo '📂 Copiando archivos de dist a public_html...'
+# Copiar todo el contenido de dist/ a la raíz (public_html)
+cp -r dist/* .
+# Asegurar que .htaccess esté en su lugar
+cp .htaccess . 2>/dev/null || true
 echo '✅ Deploy completado!'
 "@
 
