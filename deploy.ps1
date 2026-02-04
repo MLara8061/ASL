@@ -4,6 +4,7 @@
 Write-Host "🚀 Iniciando deploy a Hostinger..." -ForegroundColor Cyan
 
 # Conectar y ejecutar comandos en el servidor
+# IMPORTANTE: Se limpian los archivos _astro antiguos para evitar conflictos de hashes
 ssh -p 65002 u991047526@82.29.199.84 @"
 cd domains/acercandosoluciones.com/public_html
 echo '📦 Actualizando código desde GitHub...'
@@ -12,6 +13,8 @@ echo '📦 Instalando dependencias...'
 npm install
 echo '🔨 Compilando proyecto...'
 npm run build
+echo '🧹 Limpiando archivos _astro antiguos...'
+rm -rf _astro
 echo '📂 Copiando archivos de dist a public_html...'
 # Copiar todo el contenido de dist/ a la raíz (public_html)
 cp -r dist/* .
